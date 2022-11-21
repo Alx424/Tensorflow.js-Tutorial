@@ -17,5 +17,16 @@ class NeuralNetwork {
     }
 
 
+    predict(user_input) {
+
+        let output;
+        tf.tidy(() => {
+
+            let input_layer = tf.tensor(user_input, [this.input_nodes]);
+            let hidden_layer = input_layer.matMul(this.input_weights).sigmoid();
+            
+        })
+    }
+
 
 }
