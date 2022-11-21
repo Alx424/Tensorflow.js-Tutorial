@@ -24,9 +24,21 @@ class NeuralNetwork {
 
             let input_layer = tf.tensor(user_input, [this.input_nodes]);
             let hidden_layer = input_layer.matMul(this.input_weights).sigmoid();
-            
-        })
+            let output_layer = hidden_layer.matMul(this.output_weights).sigmoid();
+            output = output_layer.dataSync()
+        });
+        return output;
     }
+    clone() {
+        let clonie = new NeuralNetwork(this.input_nodes, this.hidden_nodes, this.output_nodes)
+        clonie.dispose()
+        clonie.input_weights = tf.clone(this.input_weights)
+        clonie.output_weights = tf.clone(this.output_weights)
+        return clonie;
+    }
+    dispose() {
+
+    };
 
 
 }
